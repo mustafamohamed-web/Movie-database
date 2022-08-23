@@ -1,7 +1,25 @@
 import React from "react";
+import { useGlobalContext } from "../context";
 
 const SearchForm = () => {
-  return <div>SearchForm</div>;
+  const { query, setQuery, error } = useGlobalContext();
+  return (
+    <form
+      className="search-form"
+      onSubmit={(e) => {
+        e.preventDefualt();
+      }}
+    >
+      <h2>Search Movies</h2>
+      <input
+        type="text"
+        className="form-input"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      {error.show && <div className="error">{error.msg}</div>}
+    </form>
+  );
 };
 
 export default SearchForm;
