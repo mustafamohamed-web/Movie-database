@@ -15,13 +15,14 @@ const AppProvider = ({ children }) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
-      if (data.response == "True") {
+
+      if (data.Response === "True") {
         setMovies(data.Search);
         setError({ show: false, msg: "" });
       } else {
         setError({ show: true, msg: data.error });
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +33,7 @@ const AppProvider = ({ children }) => {
   }, [query]);
 
   return (
-    <AppContext.Provider value={{ error, loading, movies, query }}>
+    <AppContext.Provider value={{ error, loading, movies, query, setQuery }}>
       {children}
     </AppContext.Provider>
   );
