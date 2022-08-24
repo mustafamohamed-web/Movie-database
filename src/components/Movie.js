@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Movie = () => {
   const { movies, loading } = useGlobalContext();
-  console.log(movies);
 
   if (loading) {
     return <div className="loading"></div>;
@@ -13,7 +12,6 @@ const Movie = () => {
   return (
     <section className="movies">
       {movies.map((movie) => {
-        console.log(movie);
         const { imdbID: id, Poster: poster, Title: title, Year: year } = movie;
 
         return (
